@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Umbanda - Pontos e Letras</title>
+    <style>
+        :root {
+            --primary-orange: #d97706;
+            --light-orange: #fef3c7;
+            --primary-green: #059669;
+            --light-green: #d1fae5;
+            --dark-bg: #1f2937;
+            --light-bg: #f9fafb;
+            --text-color: #374151;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
+        header { background: linear-gradient(135deg, var(--primary-orange), var(--primary-green)); color: white; padding: 2.5rem 1rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        header p { font-size: 1.1rem; opacity: 0.95; }
+        
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        
+        /* Navegação por Categorias */
+        .categories { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 2rem; }
+        .cat-btn { background: white; border: 2px solid var(--primary-green); color: var(--primary-green); padding: 0.6rem 1.2rem; border-radius: 30px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
+        .cat-btn:hover, .cat-btn.active { background: var(--primary-green); color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(5,150,105,0.2); }
+
+        /* Barra de Pesquisa */
+        .search-container { margin-bottom: 2rem; text-align: center; }
+        .search-input { width: 100%; max-width: 600px; padding: 0.8rem 1.2rem; border: 2px solid var(--primary-orange); border-radius: 30px; font-size: 1rem; outline: none; transition: box-shadow 0.3s; }
+        .search-input:focus { box-shadow: 0 0 10px rgba(217,119,6,0.3); }
+
+        /* Seções de Conteúdo */
+        .section-title { font-size: 1.8rem; color: var(--primary-green); border-bottom: 3px solid var(--primary-orange); padding-bottom: 0.5rem; margin: 2.5rem 0 1.5rem 0; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        
+        .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-orange); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .card h3 { color: var(--dark-bg); font-size: 1.3rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; }
+        .card .badge { background: var(--light-green); color: var(--primary-green); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; font-weight: bold; }
+        
+        .summary { font-size: 0.95rem; color: #4b5563; margin-bottom: 1rem; }
+        
+        /* Ajuste para exibir ~6 linhas e barra deslizante */
+        .lyrics-preview { 
+            background: var(--light-bg); 
+            border-left: 4px solid var(--primary-green); 
+            padding: 0.8rem; 
+            font-style: italic; 
+            font-size: 0.9rem; 
+            margin-bottom: 1rem; 
+            color: #1f2937; 
+            max-height: 9.5rem; 
+            overflow-y: auto; 
+        }
+        
+        .audio-player { margin-top: auto; display: flex; align-items: center; gap: 10px; background: #f3f4f6; padding: 0.6rem; border-radius: 8px; }
+        .play-btn { background: var(--primary-orange); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.85rem; transition: background 0.2s; }
+        .play-btn:hover { background: #b45309; }
+        .play-btn.playing { background: var(--primary-green); }
+        .audio-info { font-size: 0.85rem; color: #6b7280; }
+
+        footer { background: var(--dark-bg); color: white; text-align: center; padding: 2rem 1rem; margin-top: 3rem; }
+        footer p { opacity: 0.8; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portal de Umbanda Axé & Luz</h1>
+        <p>Letras, Orientações e Toques de Atabaque para os Pontos Sagrados</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar ponto, Orixá ou guia..." onkeyup="filterPoints()">
+        </div>
+
+        <div class="categories">
+            <button class="cat-btn active" onclick="filterCategory('direita')">Pontos de Abertura | Gira de Direita</button>
+            <button class="cat-btn" onclick="filterCategory('esquerda')">Pontos de Abertura | Gira da Esquerda</button>
+            <button class="cat-btn" onclick="filterCategory('caboclo')">Pontos de Caboclo</button>
+            <button class="cat-btn" onclick="filterCategory('preto-velho')">Pontos de Preto Velho</button>
+            <button class="cat-btn" onclick="filterCategory('eres')">Pontos de Erês</button>
+        </div>
+
+        <div id="content-area">
+            <h2 class="section-title">Pontos de Abertura | Gira de Direita</h2>
+            <div class="grid" id="grid-direita">
+                
+                <!-- 1. Bate Cabeça -->
+                <div class="card">
+                    <div>
+                        <h3>1. Bate Cabeça <span class="badge">Abertura</span></h3>
+                        <p class="summary">Ponto tradicional utilizado para reverenciar e saudar as forças espirituais e Oxalá ao iniciar os trabalhos no terreiro.</p>
+                        <div class="lyrics-preview">
+								Vamos bater a cabeça, em nome de Pai Oxalá<br>
+								Para saudar, o nosso Terreiro<br>
+								Para saudar, a nossa Babá
+						</div>
+                    </div>
+                    <audio id="audio-1" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('1', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Atabaque Batida Básica</span>
+                    </div>
+                </div>
+
+                <!-- 2. Defumação -->
+                <div class="card">
+                    <div>
+                        <h3>2. Defumação <span class="badge">Purificação</span></h3>
+                        <p class="summary">Canção sagrada entoada para purificar o ambiente e afastar energias densas com ervas sagradas.</p>
+                        <div class="lyrics-preview">
+								Olha a mata queimou, cheirou guiné<br>
+								Vamos defumar filhos de fé<br>
+								Defuma eeeeeeeeu Babáaa<br>
+								Defuma eu babalaô
+						</div>
+                    </div>
+                    <audio id="audio-2" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('2', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Ritmo de Defumação</span>
+                    </div>
+                </div>
+
+                <!-- 3. Hino da Umbanda -->
+                <div class="card">
+                    <div>
+                        <h3>3. Hino da Umbanda <span class="badge">Hino</span></h3>
+                        <p class="summary">O hino oficial que exalta a luz divina, a paz, o amor e a união entre os filhos de fé sob a benção de Oxalá.</p>
+                        <div class="lyrics-preview">
+								Refletiu a luz divina, Com todo seu esplendor<br>
+								Vem do reino de Oxalá, Aonde há paz e amor<br>
+								Luz que refletiu na terra,<br>
+								Luz que refletiu no mar<br>
+								Luz que veio de Aruanda, Para tudo iluminar<br><br>
+								
+								A Umbanda é paz e amor, é o mundo cheio de Luz<br>
+								É a força que nos dá vida,  E a grandeza nos conduz<br>
+								Avante, filhos de fé, Como a nossa lei não há<br>
+								Levando ao mundo inteiro, A bandeira de Oxalá
+						</div>
+                    </div>
+                    <audio id="audio-3" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('3', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Coro e Atabaques</span>
+                    </div>
+                </div>
+
+                <!-- 4. Ponto das 7 Linhas -->
+                <div class="card">
+                    <div>
+                        <h3>4. Ponto das 7 Linhas <span class="badge">Orixás</span></h3>
+                        <p class="summary">Louvação que reúne as sete vibrações e divindades que sustentam a fundação espiritual da Umbanda.</p>
+                        <div class="lyrics-preview">
+								Oh salve a Umbanda, vamos saudar,<br>
+								As 7 linhas, dos orixás<br>
+								Na natureza, 7 são as vibrações,<br>
+								Que pai Olorum criou  e aqui estão nesse congá<br><br>
+								
+								Na linha da sagrada geração,<br>
+								Pai omolu e também Iemanjá<br>
+								Lá na floresta, na força do conhecimento<br>
+								Saravá meu pai Oxóssi, saravá pra mãe Obá<br><br>
+								
+								Quem movimenta, é Iansã,<br>
+								Pelos caminhos, do pai Ogum<br>
+								Linha da lei é linha forte nas demandas<br>
+								Saravá pra lei da Umbanda, Saravá pra lei maior<br><br>
+								
+								Na força de Xangô e Oroiná,<br>
+								Tem a justiça que vem tudo equilibrar<br>
+								Na evolução, quem rege é Obaluaê<br>
+								Que traz todo o seu saber,<br>
+								junto com a mamãe Nanã<br><br>
+								
+								A cachoeira, é de Oxum, E o Arco-íris, de Oxumaré<br>
+								Que são a linha do amor do pai Olorum<br>
+								Que ilumina cada um, e engrandece nossa fé<br><br>
+								
+								Salve a umbanda, salve as 7 vibrações<br>
+								São sete cores, na coroá de Babá<br>
+								Mãe Logunã, é mãe do tempo e mãe da fé<br>
+								E o regente da Umbanda é nosso pai Oxalá<br>
+						</div>
+                    </div>
+                    <audio id="audio-4" src="https://www.youtube.com/watch?v=MGhbPCSdbEY&list=RDMGhbPCSdbEY&start_radio=1" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('4', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Ritmo Festivo</span>
+                    </div>
+                </div>
+
+                <!-- 5. Hino dos Orixás -->
+                <div class="card">
+                    <div>
+                        <h3>5. Hino dos Orixás <span class="badge">Louvação</span></h3>
+                        <p class="summary">Exaltação aos guardiões e divindades da natureza que inspiram força, coragem e proteção espiritual.</p>
+                        <div class="lyrics-preview">
+								Penso no dia que logo vai nascer<br>
+								E o meu peito se enche de emoção<br>
+								A esperança invade o meu ser<br>
+								Eu sou feliz e gosto de viver<br><br>
+								
+								Pela beleza dos raios da manhã<br>
+								Eu te saúdo, mamãe Iansã<br>
+								Pela grandeza das ondas do mar<br>
+								Me abençoe, mamãe Iemanjá<br><br>
+								
+								A mata virgem tem seu semeador<br>
+								Ele é Oxóssi, okê, okê arô<br>
+								Na cachoeira, eu vou me refazer<br>
+								Nas águas claras de Oxum, ayê-yê<br><br>
+								
+								Se a injustiça faz guerra de poder<br>
+								Valha-me a espada de Ogum, ogunhê<br>								
+								Não há doença que venha me vencer<br>
+								Sou protegida de Obaluaê<br>
+								Eu sou de paz, mas sou um lutador<br>
+								A minha lei quem dita é Xangô<br>
+								A alegria já tem inspiração<br>
+								Na inocência de Cosme e Damião<br><br>
+								
+								Não tenho medo, vou ter medo de quê?<br>
+								Tenho ao meu lado Nanã Buruque<br>								
+								E essa luz que vem de Oxalá<br>
+								Tenho a certeza, vai me iluminar<br>
+						</div>
+                    </div>
+                    <audio id="audio-5" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('5', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Toque Tradicional</span>
+                    </div>
+                </div>
+
+                <!-- 6. Oxalá -->
+                <div class="card">
+                    <div>
+                        <h3>6. Oxalá <span class="badge">Paz e Fé</span></h3>
+                        <p class="summary">Ponto de conforto espiritual que relembra o poder de Oxalá em renovar a esperança e afastar o sofrimento.</p>
+                        <div class="lyrics-preview">
+								Se acaso lhe faltar a fé, e triste estiver <br>
+								corra até seu conga<br>
+								Faca uma oração irmão e peça a proteção <br>
+								a Pai Oxalá<br>
+								Ele é rei dos Orixás, Ele é capaz de reacender <br>
+								a chama no seu coração, Retira aflição <br>
+								que te faz sofrer<br><br>
+								
+								Na luta contra o mal, Ele te faz vencer<br>
+								Basta acreditar, basta você querer<br>
+								Resgate a sua fé, Para não padecer<br>
+								Não vai te abandonar, Porque ele ama você
+						</div>
+                    </div>
+                    <audio id="audio-6" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('6', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Atabaque Suave</span>
+                    </div>
+                </div>
+
+                <!-- 7. Xangô -->
+                <div class="card">
+                    <div>
+                        <h3>7. Xangô <span class="badge">Justiça</span></h3>
+                        <p class="summary">Invocação ao Orixá da justiça para proteção contra demandas e reequilíbrio das energias.</p>
+                        <div class="lyrics-preview">
+								Estão queimando velas para me derrubar<br>
+								Eu já fiquei doente meu pai sem poder andar<br>
+								Agora estou aqui, que é para saudar Xangô<br>
+								E vira essa macumba no peito de quem mandou<br>
+								Xangô, meu pai, Amarra os inimigos e dá um nó<br>
+								Xangô, meu pai, Amarra na pontinha do cipó<br>
+						</div>
+                    </div>
+                    <audio id="audio-7" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('7', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Barravento Moderado</span>
+                    </div>
+                </div>
+
+                <!-- 8. Iansã -->
+                <div class="card">
+                    <div>
+                        <h3>8. Iansã <span class="badge">Movimento</span></h3>
+                        <p class="summary">Saudação à guerreira dos ventos e tempestades, trazendo renovação e coragem aos caminhos.</p>
+                        <div class="lyrics-preview">
+								Ô iansã menina seu jeito me fascina, É de arrepiar<br>
+								Ô iansã guerreira não há barreiras Pra lhe segurar<br>
+								Ela chegou bem devagar<br>
+								E observou em cada canto desse mundo<br>
+								E a fez pensar<br>
+								A luz brilhou em seu jacutá . . . E anunciou<br>
+								Prepare que a guerreira agora vai reinar<br><br>
+								
+								Ô iansã menina seu jeito me fascina É de arrepiar<br>
+								Ô iansã guerreira não há barreiras Pra lhe segurar<br>
+								O tempo mudou! Fez o céu brilhar<br>
+								O Sol e a Lua irradiam energia Para renovar<br>
+								Que renasça o amor e fortaleça a fé<br>
+								Pois iansã esta soprando pelo mundo<br>
+								Um vendaval de axé!<br>
+								Ô iansã menina seu jeito me fascina, É de arrepiar<br>
+								Ô iansã guerreira não há barreiras Pra lhe segurar
+						</div>
+                    </div>
+                    <audio id="audio-8" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('8', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Ritmo Ágil</span>
+                    </div>
+                </div>
+
+                <!-- 9. Oxum -->
+                <div class="card">
+                    <div>
+                        <h3>9. Oxum <span class="badge">Amor e Águas</span></h3>
+                        <p class="summary">Louvação à rainha das águas doces que traz doçura, alívio para o coração e paz espiritual.</p>
+                        <div class="lyrics-preview">
+								Eu vi mamãe Oxum, Cantando na cachoeira<br>
+								Dançando toda faceira, Tão linda como ela faz<br>
+								E quando ela canta, Xangô senta na pedreira<br>
+								Oxossi lá na ribeira, Nem vento não venta mais<br><br>
+								
+								Aiê iê ô Minha mãe, Aiê iê ô Mamãe Oxum<br>
+								Aiê iê ô Moça bonita, demais<br>
+								Canta Oxum, Alivia meu coração<br>
+								Me tira da solidão, Me traz paz
+						</div>
+                    </div>
+                    <audio id="audio-9" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('9', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Toque Sereno</span>
+                    </div>
+                </div>
+
+                <!-- 10. Ogum -->
+                <div class="card">
+                    <div>
+                        <h3>10. Ogum <span class="badge">Demanda</span></h3>
+                        <p class="summary">Invocação ao Orixá patrono da lei e cavaleiro protetor que abre os caminhos e vence as demandas.</p>
+                        <div class="lyrics-preview">
+								Venha cavalgar e serás o cavaleiro<br>
+								Sua espada clareia o mundo, patrono da Umbanda<br>
+								também bom companheiro<br>
+								vence qualquer demanda não deixa o filho em desespero<br>
+								Ôoo Senhor Ogum, avante guerreiro
+						</div>
+                    </div>
+                    <audio id="audio-10" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('10', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Marcha de Ogum</span>
+                    </div>
+                </div>
+
+                <!-- 11. Iemanjá -->
+                <div class="card">
+                    <div>
+                        <h3>11. Iemanjá <span class="badge">Mar</span></h3>
+                        <p class="summary">Ponto de acolhimento nas ondas do mar, trazendo serenidade e a proteção maternal de Iemanjá.</p>
+                        <div class="lyrics-preview">
+								Sonhei que estava na beira da praia<br>
+								Olhando as ondas do mar<br>
+								No céu, tinha muitas estrelas,  A Lua estava a brilhar<br>
+								Perdido no mundo eu estava, Sem ter aonde ficar<br>
+								De repente uma voz me falou baixinho<br>
+								Tenha fé em oxalá<br><br>
+								Era ela, nas ondas do mar, Que coisa mais linda<br>
+								Mamãe Iemanjá<br>
+								Era ela nas ondas do mar, Estendendo suas mãos<br>
+								Para me abençoar
+						</div>
+                    </div>
+                    <audio id="audio-11" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('11', this)">▶ Ouvir Áudio</button>
+                        <span class="audio-info">Ijexá</span>
+                    </div>
+                </div>
+
+                <!-- 12. Oxossi -->
+                <div class="card">
+                    <div>
+                        <h3>12. Oxossi <span class="badge">Mata</span></h3>
+                        <p class="summary">Louvação ao senhor das matas e caçador de uma flecha só, símbolo de fartura e conhecimento.</p>
+                        <div class="lyrics-preview">
+								Sou filho do guerreiro de uma flecha só<br>
+								Sou filho de Oxossi caçador<br>
+								E todo bom guerreiro não anda só<br>
+								Tem sempre um irmão merecedor<br><br>
+								
+								O Rei das Matas, O meu protetor<br>
+								Sarava meu pai Oxossi, Sua bênção meu senhor Oke Arô<br><br>
+								
+								Sou filho do guerreiro de uma flecha só<br>
+								Sou filho de Oxossi caçador<br>
+								Ele é mensageiro do Pai maior<br>
+								E cumpre sua missão com muito amor
+						</div>
+                    </div>
+                    <audio id="audio-12" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="toggleAudio('12', this)">
