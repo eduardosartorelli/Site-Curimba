@@ -8,47 +8,109 @@
         :root {
             --primary-orange: #d97706;
             --light-orange: #fef3c7;
-            --primary-green: #059669;
-            --light-green: #d1fae5;
+            --primary-green: #2d4a2d;
+            --light-green: #eef2ec;
+            --primary-red: #dc2626;
+            --light-red: #fee2e2;
             --dark-bg: #1f2937;
             --light-bg: #f9fafb;
-            --text-color: #374151;
+            --text-color: #2f3e32;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
-        header { background: linear-gradient(135deg, var(--primary-orange), var(--primary-green)); color: white; padding: 2.5rem 1rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
-        header p { font-size: 1.1rem; opacity: 0.95; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { 
+            background: linear-gradient(rgba(244, 246, 240, 0.85), rgba(244, 246, 240, 0.85)), url('fundo.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color); 
+            line-height: 1.6; 
+        }
+        
+        header { 
+            position: relative;
+            background: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.75)), url('head.png');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(3px);
+            color: var(--primary-green); 
+            padding: 2.0rem 1rem 1.8rem 1rem; 
+            text-align: center; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
+        }
+        header h1 { 
+            font-size: 2.3rem; 
+            font-weight: 700; 
+            letter-spacing: -0.03em; 
+            margin-bottom: 0.3rem; 
+            color: #1e331e;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        header p { 
+            font-size: 1rem; 
+            color: #2d4a2d; 
+            font-weight: 500; 
+            letter-spacing: -0.01em; 
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
         
         .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
         
-        /* Navegação por Categorias */
-        .categories { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 2rem; }
-        .cat-btn { background: white; border: 2px solid var(--primary-green); color: var(--primary-green); padding: 0.6rem 1.2rem; border-radius: 30px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
-        .cat-btn:hover, .cat-btn.active { background: var(--primary-green); color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(5,150,105,0.2); }
+        .categories-container { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-bottom: 2rem; }
+        .category-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
+        
+        .cat-btn { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            font-size: 0.95rem;
+            transition: all 0.3s ease; 
+        }
+        
+        .cat-btn.green { border: 2px solid var(--primary-green); color: var(--primary-green); }
+        .cat-btn.green:hover, .cat-btn.green.active { background: var(--primary-green); color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(45,74,45,0.2); }
 
-        /* Barra de Pesquisa */
+        .cat-btn.red { border: 2px solid var(--primary-red); color: var(--primary-red); }
+        .cat-btn.red:hover, .cat-btn.red.active { background: var(--primary-red); color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(220,38,38,0.2); }
+
         .search-container { margin-bottom: 2rem; text-align: center; }
-        .search-input { width: 100%; max-width: 600px; padding: 0.8rem 1.2rem; border: 2px solid var(--primary-orange); border-radius: 30px; font-size: 1rem; outline: none; transition: box-shadow 0.3s; }
-        .search-input:focus { box-shadow: 0 0 10px rgba(217,119,6,0.3); }
+        .search-input { 
+            width: 100%; 
+            max-width: 550px; 
+            padding: 0.75rem 1.25rem; 
+            background: rgba(255, 255, 255, 0.92); 
+            border: 1px solid rgba(45, 74, 45, 0.25); 
+            border-radius: 30px; 
+            font-size: 0.95rem; 
+            outline: none; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04); 
+        }
+        .search-input:focus { 
+            border-color: var(--primary-green);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(45, 74, 45, 0.15); 
+        }
 
-        /* Seções de Conteúdo */
         .section-title { font-size: 1.8rem; color: var(--primary-green); border-bottom: 3px solid var(--primary-orange); padding-bottom: 0.5rem; margin: 2.5rem 0 1.5rem 0; }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
         
-        .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-orange); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .card { background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-orange); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         
         .card h3 { color: var(--dark-bg); font-size: 1.3rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; }
-        .card .badge { background: var(--light-green); color: var(--primary-green); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; font-weight: bold; }
-        
+       
+		.card .badge { background: #e0f2fe; color: #0369a1; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; font-weight: bold; }
+
         .summary { font-size: 0.95rem; color: #4b5563; margin-bottom: 1rem; }
         
-        /* Ajuste para exibir ~6 linhas e barra deslizante */
         .lyrics-preview { 
             background: var(--light-bg); 
-            border-left: 4px solid var(--primary-green); 
+            border-left: 3px solid var(--primary-green); 
             padding: 0.8rem; 
             font-style: italic; 
             font-size: 0.9rem; 
@@ -58,21 +120,124 @@
             overflow-y: auto; 
         }
         
-        .audio-player { margin-top: auto; display: flex; align-items: center; gap: 10px; background: #f3f4f6; padding: 0.6rem; border-radius: 8px; }
-        .play-btn { background: var(--primary-orange); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 0.85rem; transition: background 0.2s; }
+        /* Ajustes no Player de Áudio compacto */
+        .audio-player { 
+            margin-top: auto; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            background: #f1f3f5; 
+            padding: 0.5rem 0.75rem; 
+            border-radius: 8px; 
+            width: 100%;
+        }
+
+        /* Botão apenas com ícone */
+        .play-btn { 
+            background: var(--primary-orange); 
+            color: white; 
+            border: none; 
+            width: 34px;
+            height: 34px;
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 0.85rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s; 
+            flex-shrink: 0;
+        }
         .play-btn:hover { background: #b45309; }
         .play-btn.playing { background: var(--primary-green); }
-        .audio-info { font-size: 0.85rem; color: #6b7280; }
 
-        footer { background: var(--dark-bg); color: white; text-align: center; padding: 2rem 1rem; margin-top: 3rem; }
-        footer p { opacity: 0.8; font-size: 0.9rem; }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            min-width: 0; /* Garante que o slider encolhe adequadamente */
+        }
+
+        .seek-bar {
+            flex: 1;
+            height: 4px;
+            accent-color: var(--primary-orange);
+            cursor: pointer;
+            min-width: 0;
+        }
+
+        .time-display {
+            font-size: 0.72rem;
+            color: #6b7280;
+            white-space: nowrap;
+            font-family: monospace;
+            flex-shrink: 0;
+        }
+
+        .mute-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            flex-shrink: 0;
+            padding: 0 2px;
+        }
+        .mute-btn:hover { opacity: 1; }
+
+        footer {     
+            background: rgba(15, 41, 24, 0.85); 
+            color: orange; 
+            text-align: center; 
+            padding: 2rem 1rem; 
+            margin-top: 3rem; 
+        }
+        footer p { 
+            opacity: 1.0; 
+            font-size: 0.9rem; 
+            color: orange; 
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1.8rem 0.8rem 1.2rem 0.8rem; }
+            header h1 { font-size: 1.7rem; }
+            header p { font-size: 0.9rem; }
+
+            .container { margin: 1rem auto; padding: 0 0.8rem; }
+
+            .category-row { gap: 6px; }
+            .cat-btn { 
+                padding: 0.4rem 0.8rem; 
+                font-size: 0.82rem; 
+                border-width: 1.5px;
+            }
+
+            .search-input { 
+                padding: 0.7rem 1rem; 
+                font-size: 0.9rem; 
+            }
+
+            .section-title { 
+                font-size: 1.4rem; 
+                margin: 1.5rem 0 1rem 0; 
+            }
+
+            .grid { 
+                grid-template-columns: 1fr; 
+                gap: 1rem; 
+            }
+
+            .card { padding: 1rem; }
+            .card h3 { font-size: 1.15rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Pontos de Curimba</h1>
-        <p>Página com pontos, letras e áudios de Umbanda</p>
+        <p>Pontos tocados em nossa Casa para nossos irmãos de Santo</p>
     </header>
 
     <div class="container">
@@ -81,19 +246,23 @@
             <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar ponto, Orixá ou guia..." onkeyup="filterPoints()">
         </div>
 
-        <div class="categories">
-            <button class="cat-btn active" onclick="filterCategory('direita')">Abertura da Direita</button>
-            <button class="cat-btn" onclick="filterCategory('esquerda')">Abertura da Esquerda</button>
-            <button class="cat-btn" onclick="filterCategory('caboclo')">Caboclo</button>
-            <button class="cat-btn" onclick="filterCategory('preto-velho')">Preto Velho</button>
-            <button class="cat-btn" onclick="filterCategory('eres')">Erês</button>
-			<button class="cat-btn" onclick="filterCategory('baiano')">Baianos</button>
-            <button class="cat-btn" onclick="filterCategory('boiadeiro')">Boiadeiros</button>
-            <button class="cat-btn" onclick="filterCategory('marinheiro')">Marinheiros</button>
-			<button class="cat-btn" onclick="filterCategory('exu')">Exú</button>
-            <button class="cat-btn" onclick="filterCategory('pombogira')">Pombogira</button>
-            <button class="cat-btn" onclick="filterCategory('exumirim')">Exú-Mirim</button>
-            <button class="cat-btn" onclick="filterCategory('malandro')">Malandros</button>
+        <div class="categories-container">
+            <div class="category-row">
+                <button class="cat-btn green active" onclick="filterCategory('direita')">Abertura da Direita</button>
+                <button class="cat-btn green" onclick="filterCategory('caboclo')">Caboclo</button>
+                <button class="cat-btn green" onclick="filterCategory('preto-velho')">Preto Velho</button>
+                <button class="cat-btn green" onclick="filterCategory('eres')">Erês</button>
+                <button class="cat-btn green" onclick="filterCategory('baiano')">Baianos</button>
+                <button class="cat-btn green" onclick="filterCategory('boiadeiro')">Boiadeiros</button>
+                <button class="cat-btn green" onclick="filterCategory('marinheiro')">Marinheiros</button>
+            </div>
+            <div class="category-row">
+                <button class="cat-btn red" onclick="filterCategory('esquerda')">Abertura da Esquerda</button>
+                <button class="cat-btn red" onclick="filterCategory('exu')">Exú</button>
+                <button class="cat-btn red" onclick="filterCategory('pombogira')">Pombogira</button>
+                <button class="cat-btn red" onclick="filterCategory('exumirim')">Exú-Mirim</button>
+                <button class="cat-btn red" onclick="filterCategory('malandro')">Malandros</button>
+            </div>
         </div>
 
         <div id="content-area">
@@ -104,7 +273,6 @@
                 <div class="card">
                     <div>
                         <h3>1. Bate Cabeça <span class="badge">Nagô</span></h3>
-                        <p class="summary">Ponto tradicional utilizado para reverenciar e saudar as forças espirituais e Oxalá ao iniciar os trabalhos no terreiro.</p>
                         <div class="lyrics-preview">
 								Vamos bater a cabeça, em nome de Pai Oxalá<br>
 								Para saudar, o nosso Terreiro<br>
@@ -113,8 +281,12 @@
                     </div>
                     <audio id="audio-1" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('1', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Atabaque Batida Básica</span>
+                        <button class="play-btn" onclick="toggleAudio('1', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('1', this)">
+                            <span class="time-display" id="time-1">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('1', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -122,7 +294,6 @@
                 <div class="card">
                     <div>
                         <h3>2. Defumação <span class="badge">Samba</span></h3>
-                        <p class="summary">Canção sagrada entoada para purificar o ambiente e afastar energias densas com ervas sagradas.</p>
                         <div class="lyrics-preview">
 								Olha a mata queimou, cheirou guiné<br>
 								Vamos defumar filhos de fé<br>
@@ -132,8 +303,12 @@
                     </div>
                     <audio id="audio-2" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('2', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Ritmo de Defumação</span>
+                        <button class="play-btn" onclick="toggleAudio('2', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('2', this)">
+                            <span class="time-display" id="time-2">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('2', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -141,7 +316,6 @@
                 <div class="card">
                     <div>
                         <h3>3. Hino da Umbanda <span class="badge">Nagô</span></h3>
-                        <p class="summary">O hino oficial que exalta a luz divina, a paz, o amor e a união entre os filhos de fé sob a benção de Oxalá.</p>
                         <div class="lyrics-preview">
 								Refletiu a luz divina, Com todo seu esplendor<br>
 								Vem do reino de Oxalá, Aonde há paz e amor<br>
@@ -157,8 +331,12 @@
                     </div>
                     <audio id="audio-3" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('3', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Coro e Atabaques</span>
+                        <button class="play-btn" onclick="toggleAudio('3', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('3', this)">
+                            <span class="time-display" id="time-3">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('3', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -166,10 +344,9 @@
                 <div class="card">
                     <div>
                         <h3>4. Ponto das 7 Linhas <span class="badge">Nagô</span></h3>
-                        <p class="summary">O QUE PODEMOS COLOCAR NESSE TEXTO ?.</p>
                         <div class="lyrics-preview">
 								Oh salve a Umbanda, vamos saudar,<br>
-								As 7 linhas, dos orixás<br>
+								As 7 linhas, dos Orixás<br>
 								Na natureza, 7 são as vibrações,<br>
 								Que pai Olorum criou  e aqui estão nesse congá<br><br>
 								
@@ -193,7 +370,7 @@
 								Que são a linha do amor do pai Olorum<br>
 								Que ilumina cada um, e engrandece nossa fé<br><br>
 								
-								Salve a umbanda, salve as 7 vibrações<br>
+								Salve a Umbanda, salve as 7 vibrações<br>
 								São sete cores, na coroá de Babá<br>
 								Mãe Logunã, é mãe do tempo e mãe da fé<br>
 								E o regente da Umbanda é nosso pai Oxalá<br>
@@ -201,8 +378,12 @@
                     </div>
                     <audio id="audio-4" src="7_audio.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('4', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Ritmo Festivo</span>
+                        <button class="play-btn" onclick="toggleAudio('4', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('4', this)">
+                            <span class="time-display" id="time-4">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('4', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -210,7 +391,6 @@
                 <div class="card">
                     <div>
                         <h3>5. Hino dos Orixás <span class="badge">Congo</span></h3>
-                        <p class="summary">Exaltação aos guardiões e divindades da natureza que inspiram força, coragem e proteção espiritual.</p>
                         <div class="lyrics-preview">
 								Penso no dia que logo vai nascer<br>
 								E o meu peito se enche de emoção<br>
@@ -244,8 +424,12 @@
                     </div>
                     <audio id="audio-5" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('5', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Toque Tradicional</span>
+                        <button class="play-btn" onclick="toggleAudio('5', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('5', this)">
+                            <span class="time-display" id="time-5">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('5', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -253,7 +437,6 @@
                 <div class="card">
                     <div>
                         <h3>6. Oxalá <span class="badge">Congo</span></h3>
-                        <p class="summary">Ponto de conforto espiritual que relembra o poder de Oxalá em renovar a esperança e afastar o sofrimento.</p>
                         <div class="lyrics-preview">
 								Se acaso lhe faltar a fé, e triste estiver <br>
 								corra até seu conga<br>
@@ -271,8 +454,12 @@
                     </div>
                     <audio id="audio-6" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('6', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Atabaque Suave</span>
+                        <button class="play-btn" onclick="toggleAudio('6', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('6', this)">
+                            <span class="time-display" id="time-6">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('6', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -280,7 +467,6 @@
                 <div class="card">
                     <div>
                         <h3>7. Xangô <span class="badge">Barravento</span></h3>
-                        <p class="summary">Invocação ao Orixá da justiça para proteção contra demandas e reequilíbrio das energias.</p>
                         <div class="lyrics-preview">
 								Estão queimando velas para me derrubar<br>
 								Eu já fiquei doente meu pai sem poder andar<br>
@@ -292,8 +478,12 @@
                     </div>
                     <audio id="audio-7" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('7', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Barravento Moderado</span>
+                        <button class="play-btn" onclick="toggleAudio('7', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('7', this)">
+                            <span class="time-display" id="time-7">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('7', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -301,31 +491,34 @@
                 <div class="card">
                     <div>
                         <h3>8. Iansã <span class="badge">Barravento</span></h3>
-                        <p class="summary">Saudação à guerreira dos ventos e tempestades, trazendo renovação e coragem aos caminhos.</p>
                         <div class="lyrics-preview">
-								Ô iansã menina seu jeito me fascina, É de arrepiar<br>
-								Ô iansã guerreira não há barreiras Pra lhe segurar<br>
+								Ô Iansã menina seu jeito me fascina, É de arrepiar<br>
+								Ô Iansã guerreira não há barreiras Pra lhe segurar<br>
 								Ela chegou bem devagar<br>
 								E observou em cada canto desse mundo<br>
 								E a fez pensar<br>
 								A luz brilhou em seu jacutá . . . E anunciou<br>
 								Prepare que a guerreira agora vai reinar<br><br>
 								
-								Ô iansã menina seu jeito me fascina É de arrepiar<br>
-								Ô iansã guerreira não há barreiras Pra lhe segurar<br>
+								Ô Iansã menina seu jeito me fascina É de arrepiar<br>
+								Ô Iansã guerreira não há barreiras Pra lhe segurar<br>
 								O tempo mudou! Fez o céu brilhar<br>
 								O Sol e a Lua irradiam energia Para renovar<br>
 								Que renasça o amor e fortaleça a fé<br>
-								Pois iansã esta soprando pelo mundo<br>
+								Pois Iansã esta soprando pelo mundo<br>
 								Um vendaval de axé!<br>
-								Ô iansã menina seu jeito me fascina, É de arrepiar<br>
-								Ô iansã guerreira não há barreiras Pra lhe segurar
+								Ô Iansã menina seu jeito me fascina, É de arrepiar<br>
+								Ô Iansã guerreira não há barreiras Pra lhe segurar
 						</div>
                     </div>
                     <audio id="audio-8" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('8', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Ritmo Ágil</span>
+                        <button class="play-btn" onclick="toggleAudio('8', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('8', this)">
+                            <span class="time-display" id="time-8">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('8', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -333,7 +526,6 @@
                 <div class="card">
                     <div>
                         <h3>9. Oxum <span class="badge">Ijexá</span></h3>
-                        <p class="summary">Louvação à rainha das águas doces que traz doçura, alívio para o coração e paz espiritual.</p>
                         <div class="lyrics-preview">
 								Eu vi mamãe Oxum, Cantando na cachoeira<br>
 								Dançando toda faceira, Tão linda como ela faz<br>
@@ -348,8 +540,12 @@
                     </div>
                     <audio id="audio-9" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('9', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Toque Sereno</span>
+                        <button class="play-btn" onclick="toggleAudio('9', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('9', this)">
+                            <span class="time-display" id="time-9">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('9', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -357,7 +553,6 @@
                 <div class="card">
                     <div>
                         <h3>10. Ogum <span class="badge">Nagô</span></h3>
-                        <p class="summary">Invocação ao Orixá patrono da lei e cavaleiro protetor que abre os caminhos e vence as demandas.</p>
                         <div class="lyrics-preview">
 								Venha cavalgar e serás o cavaleiro<br>
 								Sua espada clareia o mundo, patrono da Umbanda<br>
@@ -368,8 +563,12 @@
                     </div>
                     <audio id="audio-10" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('10', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Marcha de Ogum</span>
+                        <button class="play-btn" onclick="toggleAudio('10', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('10', this)">
+                            <span class="time-display" id="time-10">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('10', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -377,7 +576,6 @@
                 <div class="card">
                     <div>
                         <h3>11. Iemanjá <span class="badge">Ijexá</span></h3>
-                        <p class="summary">Ponto de acolhimento nas ondas do mar, trazendo serenidade e a proteção maternal de Iemanjá.</p>
                         <div class="lyrics-preview">
 								Sonhei que estava na beira da praia<br>
 								Olhando as ondas do mar<br>
@@ -393,8 +591,12 @@
                     </div>
                     <audio id="audio-11" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('11', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Ijexá</span>
+                        <button class="play-btn" onclick="toggleAudio('11', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('11', this)">
+                            <span class="time-display" id="time-11">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('11', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -402,7 +604,6 @@
                 <div class="card">
                     <div>
                         <h3>12. Oxossi <span class="badge">Congo</span></h3>
-                        <p class="summary">Louvação ao senhor das matas e caçador de uma flecha só, símbolo de fartura e conhecimento.</p>
                         <div class="lyrics-preview">
 								Sou filho do guerreiro de uma flecha só<br>
 								Sou filho de Oxossi caçador<br>
@@ -420,8 +621,12 @@
                     </div>
                     <audio id="audio-12" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('11', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Cabula</span>
+                        <button class="play-btn" onclick="toggleAudio('12', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('12', this)">
+                            <span class="time-display" id="time-12">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('12', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -429,7 +634,6 @@
                 <div class="card">
                     <div>
                         <h3>13. Ibejis <span class="badge">Nagô</span></h3>
-                        <p class="summary">Ponto alegre que evoca a pureza e a energia festiva dos Erês e protetores infantis.</p>
                         <div class="lyrics-preview">
 								Mas Que lindo cavalo branco <br>
 								que aquele menino vem montado<br>
@@ -441,8 +645,12 @@
                     </div>
                     <audio id="audio-13" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('13', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Ritmo Alegre</span>
+                        <button class="play-btn" onclick="toggleAudio('13', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('13', this)">
+                            <span class="time-display" id="time-13">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('13', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -450,7 +658,6 @@
                 <div class="card">
                     <div>
                         <h3>14. Nanã <span class="badge">Ijexá</span></h3>
-                        <p class="summary">Saudação à matriarca dos Orixás, ligada à sabedoria ancestral e à transmutação.</p>
                         <div class="lyrics-preview">
 								Se na ponta da fita tem dendê,<br>
 								vamos saravá Nanã Buruquê<br>
@@ -463,8 +670,12 @@
                     </div>
                     <audio id="audio-14" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('14', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Toque Ancestral</span>
+                        <button class="play-btn" onclick="toggleAudio('14', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('14', this)">
+                            <span class="time-display" id="time-14">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('14', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -472,14 +683,13 @@
                 <div class="card">
                     <div>
                         <h3>15. Obaluaê <span class="badge">Ijexá</span></h3>
-                        <p class="summary">Invocação ao senhor das palhas e da cura, trazendo alívio aos enfermos e proteção nas provações.</p>
                         <div class="lyrics-preview">
 								Se você está sofrendo, no leito com frio e com dor<br>
 								Com pipoca e dendê, Muita gente ele curou <br>
 								Se seu corpo está ferido, E não pode mais suportar<br>
 								Peça proteção a ele, que ele vai lhe ajudar<br>
 								
-								É Obaluaê É Obaluaê, (Seu ATOTÔOO)
+								É Obaluaê É Obaluaê, (Seu ATOTÔOO)<br>
 								
 								Tenho um segredo da vida, Do começo e do fim<br>
 								Ô meu senhor das palhas, Tenha muita dó de mim<br>
@@ -489,8 +699,12 @@
                     </div>
                     <audio id="audio-15" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('15', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Atotô</span>
+                        <button class="play-btn" onclick="toggleAudio('15', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('15', this)">
+                            <span class="time-display" id="time-15">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('15', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -498,9 +712,8 @@
                 <div class="card">
                     <div>
                         <h3>16. Guardiões <span class="badge">Congo</span></h3>
-                        <p class="summary">Pontos dos guardiões das encruzilhadas que trabalham na retaguarda e proteção da lei divina.</p>
                         <div class="lyrics-preview">
-								<b>Exú</b>
+								<b>Exú</b><br>
 								Deu meia-noite, a lua se escondeu<br>
 								láaaa na encruzilhada dando a sua gargalhada<br>
 								Tranca-rua apareceu<br><br>
@@ -510,7 +723,7 @@
 								Ele é Odara, dando a sua gargalhada<br>
 								quem tem fé, em tranca rua é só pedir que ele dá<br><br>
 								
-								<b>Pombogira</b>
+								<b>Pombogira</b><br>
 								Houve um bafafá na encruzilhada <br>
 								Não sei que houve O que que há <br>
 								
@@ -520,7 +733,7 @@
 								Eu quero ver Pombogirê, Eu quero ver Pombogirá<br>
 								Quero ver a Pombogira Trabalhando sem parar<br><br>
 								
-								<b>Exú-Mirim</b>
+								<b>Exú-Mirim</b><br>
 								Você usou sua língua <br>
 								pra falar mal de mim [BIS]<br>
 								eu vou da o seu nome é pra exu mirim<br><br>
@@ -528,7 +741,7 @@
 								A sua língua é grande ela vai diminuir<br>
 								eu vou da seu nome é pra exu mirim<br><br>
 								
-								<b>Ze Pelintra</b>
+								<b>Ze Pelintra</b><br>
 								Boa noite pra quem é de boa noite<br>
 								Bom dia pra quem é de bom dia<br>
 								A benção meu Papai a benção<br>
@@ -537,16 +750,19 @@
                     </div>
                     <audio id="audio-16" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('16', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Barravento</span>
+                        <button class="play-btn" onclick="toggleAudio('16', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('16', this)">
+                            <span class="time-display" id="time-16">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('16', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 17. Anjo de Guarda -->
                 <div class="card">
                     <div>
-                        <h3>17. Proteção e Toalha <span class="badge">Nagô</span></h3>
-                        <p class="summary">Invocações tradicionais de proteção e consagração do congá e dos elementos de trabalho.</p>
+                        <h3>17. Anjo da Guarda <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
 								Essa casa tem quatro cantos<br>
 								cada canto tem seu santo<br>
@@ -558,8 +774,12 @@
                     </div>
                     <audio id="audio-17" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('17', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Ritmo Suave</span>
+                        <button class="play-btn" onclick="toggleAudio('17', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('17', this)">
+                            <span class="time-display" id="time-17">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('17', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -567,16 +787,19 @@
                 <div class="card">
                     <div>
                         <h3>18. Proteção e Toalha <span class="badge">Nagô</span></h3>
-                        <p class="summary">Invocações tradicionais de proteção e consagração do congá e dos elementos de trabalho.</p>
                         <div class="lyrics-preview">
 								Ô salve a pemba, também salve a toalha<br>
 								Salve a coroa, a de nosso Zambi é maior<br>
 						</div>
                     </div>
-                    <audio id="audio-17" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <audio id="audio-18" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('17', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Ritmo Suave</span>
+                        <button class="play-btn" onclick="toggleAudio('18', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('18', this)">
+                            <span class="time-display" id="time-18">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('18', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -584,16 +807,19 @@
                 <div class="card">
                     <div>
                         <h3>19. Abrir a Gira <span class="badge">Nagô</span></h3>
-                        <p class="summary">Ponto cantado para pedir licença aos mentores e divindades para dar início à corrente espiritual.</p>
                         <div class="lyrics-preview">
 								Vou abir minha Jurema vou abrir meu Juremá<br>
-								Com licença de meu pai Xangô e todos os orixás
+								Com licença de meu pai Xangô e todos os Orixás
 						</div>
                     </div>
-                    <audio id="audio-18" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
+                    <audio id="audio-19" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="none"></audio>
                     <div class="audio-player">
-                        <button class="play-btn" onclick="toggleAudio('18', this)">▶ Ouvir Áudio</button>
-                        <span class="audio-info">Atabaque Inicial</span>
+                        <button class="play-btn" onclick="toggleAudio('19', this)" title="Ouvir Áudio">▶</button>
+                        <div class="player-controls">
+                            <input type="range" class="seek-bar" value="0" max="100" step="0.1" oninput="seekAudio('19', this)">
+                            <span class="time-display" id="time-19">0:00 / 0:00</span>
+                            <button class="mute-btn" onclick="toggleMute('19', this)" title="Silenciar">🔊</button>
+                        </div>
                     </div>
                 </div>
 
@@ -603,16 +829,26 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Portal Axé & Luz - Divulgação de Letras e Áudios de Umbanda. Todos os direitos reservados.</p>
+	        <p>&copy; 2026 | Pontos de Curimba | Pontos de Umbanda | Todos os direitos reservados.</p>
     </footer>
 
     <script>
         let currentAudio = null;
+        let updateInterval = null;
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
 
         function filterCategory(category) {
             const buttons = document.querySelectorAll('.cat-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if(event && event.target) {
+                event.target.classList.add('active');
+            }
         }
 
         function filterPoints() {
@@ -631,38 +867,76 @@
 
         function toggleAudio(audioId, buttonElement) {
             const audio = document.getElementById('audio-' + audioId);
+            const seekBar = buttonElement.parentElement.querySelector('.seek-bar');
+            const timeDisplay = document.getElementById('time-' + audioId);
             
             if (currentAudio && currentAudio !== audio) {
                 currentAudio.pause();
                 currentAudio.currentTime = 0;
+                if (updateInterval) clearInterval(updateInterval);
                 const prevBtn = document.querySelector('.play-btn.playing');
                 if (prevBtn) {
-                    prevBtn.innerHTML = '▶ Ouvir Áudio';
+                    prevBtn.innerHTML = '▶';
                     prevBtn.classList.remove('playing');
                 }
             }
 
             if (audio.paused) {
                 audio.play().then(() => {
-                    buttonElement.innerHTML = '⏸ Pausar';
+                    buttonElement.innerHTML = '⏸';
                     buttonElement.classList.add('playing');
                     currentAudio = audio;
+                    
+                    if (updateInterval) clearInterval(updateInterval);
+                    updateInterval = setInterval(() => {
+                        if (!audio.paused) {
+                            const progress = (audio.currentTime / audio.duration) * 100;
+                            if (seekBar) seekBar.value = isNaN(progress) ? 0 : progress;
+                            if (timeDisplay) {
+                                timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+                            }
+                        }
+                    }, 250);
                 }).catch(err => {
-                    alert('Erro ao reproduzir o áudio. Verifique o link do arquivo .mp3.');
+                    alert('Erro ao reproduzir o áudio. Verifique o link do ficheiro .mp3.');
                     console.error(err);
                 });
             } else {
                 audio.pause();
-                buttonElement.innerHTML = '▶ Ouvir Áudio';
+                buttonElement.innerHTML = '▶';
                 buttonElement.classList.remove('playing');
+                if (updateInterval) clearInterval(updateInterval);
                 currentAudio = null;
             }
 
+            audio.onloadedmetadata = function() {
+                if (timeDisplay) {
+                    timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+                }
+            };
+
             audio.onended = function() {
-                buttonElement.innerHTML = '▶ Ouvir Áudio';
+                buttonElement.innerHTML = '▶';
                 buttonElement.classList.remove('playing');
+                if (updateInterval) clearInterval(updateInterval);
+                if (seekBar) seekBar.value = 0;
+                if (timeDisplay) timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
                 currentAudio = null;
             };
+        }
+
+        function seekAudio(audioId, seekBar) {
+            const audio = document.getElementById('audio-' + audioId);
+            if (audio.duration) {
+                const seekTime = (seekBar.value / 100) * audio.duration;
+                audio.currentTime = seekTime;
+            }
+        }
+
+        function toggleMute(audioId, muteBtn) {
+            const audio = document.getElementById('audio-' + audioId);
+            audio.muted = !audio.muted;
+            muteBtn.textContent = audio.muted ? '🔇' : '🔊';
         }
     </script>
 </body>
