@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pontos de Curimba - Letras e Áudios</title>
+    
+    <!-- Importação das fontes Cinzel e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-orange: #d97706;
@@ -13,163 +19,302 @@
             --primary-red: #dc2626;
             --light-red: #fee2e2;
             --dark-bg: #1f2937;
-            --light-bg: #f9fafb;
+            --light-bg: #fafafa;
             --text-color: #2f3e32;
+            --gold-accent: #d4af37;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+        }
         
         body { 
-            background: linear-gradient(rgba(244, 246, 240, 0.85), rgba(244, 246, 240, 0.85)), url('fundo.png');
+            background: linear-gradient(rgba(244, 246, 240, 0.50), rgba(244, 246, 240, 0.85)), url('fundo.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: var(--text-color); 
             line-height: 1.6; 
+            padding-bottom: 85px;
         }
         
+        /* ================= HEADER COMPACTO & HORIZONTAL ================= */
         header { 
             position: relative;
-            background: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.75)), url('head.png');
-            background-size: cover;
-            background-position: center;
-            backdrop-filter: blur(3px);
-            color: var(--primary-green); 
-            padding: 2.0rem 1rem 1.8rem 1rem; 
-            text-align: center; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
+            background: rgba(249, 250, 251, 0.95);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1.2rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            backdrop-filter: blur(8px);
         }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* LOGO CÍRCULO COM SVG DE ATABAQUE */
+        .header-logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #2d4a2d 0%, #1f2937 100%);
+            border: 2px solid var(--gold-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+
+        .header-logo-icon svg,
+        .footer-logo-icon svg,
+        .player-cover svg {
+            width: 58%;
+            height: 58%;
+            fill: var(--gold-accent);
+        }
+
+        .header-titles {
+            display: flex;
+            flex-direction: column;
+        }
+
         header h1 { 
-            font-size: 2.3rem; 
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem; 
             font-weight: 700; 
-            letter-spacing: -0.03em; 
-            margin-bottom: 0.3rem; 
-            color: #1e331e;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.1em; 
+            color: var(--primary-green);
+            line-height: 1.2;
         }
+
         header p { 
-            font-size: 1rem; 
-            color: #2d4a2d; 
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem; 
+            color: #6b7280; 
             font-weight: 500; 
-            letter-spacing: -0.01em; 
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.03em; 
+            text-transform: uppercase;
         }
-        
-        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-        
-        .categories-container { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-bottom: 2rem; }
-        .category-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
-        
-        .cat-btn { 
-            background: rgba(255, 255, 255, 0.95); 
-            padding: 0.6rem 1.2rem; 
-            border-radius: 30px; 
-            cursor: pointer; 
-            font-weight: 600; 
-            font-size: 0.95rem;
-            transition: all 0.3s ease; 
+
+        .header-search-container {
+            flex: 1;
+            max-width: 420px;
+            min-width: 250px;
         }
-        
-        .cat-btn.green { border: 2px solid var(--primary-green); color: var(--primary-green); }
-        .cat-btn.green:hover, .cat-btn.green.active { background: var(--primary-green); color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(45,74,45,0.2); }
 
-        .cat-btn.red { border: 2px solid var(--primary-red); color: var(--primary-red); }
-        .cat-btn.red:hover, .cat-btn.red.active { background: var(--primary-red); color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(220,38,38,0.2); }
-
-        .search-container { margin-bottom: 2rem; text-align: center; }
         .search-input { 
             width: 100%; 
-            max-width: 550px; 
-            padding: 0.75rem 1.25rem; 
-            background: rgba(255, 255, 255, 0.92); 
-            border: 1px solid rgba(45, 74, 45, 0.25); 
+            padding: 0.65rem 1.1rem; 
+            background: #ffffff; 
+            border: 1px solid #d1d5db; 
             border-radius: 30px; 
-            font-size: 0.95rem; 
+            font-size: 0.9rem; 
             outline: none; 
             transition: all 0.3s ease; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04); 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+            font-family: 'Inter', sans-serif;
         }
         .search-input:focus { 
             border-color: var(--primary-green);
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(45, 74, 45, 0.15); 
+            box-shadow: 0 0 0 3px rgba(45, 74, 45, 0.12); 
         }
 
-        .section-title { font-size: 1.8rem; color: var(--primary-green); border-bottom: 3px solid var(--primary-orange); padding-bottom: 0.5rem; margin: 2.5rem 0 1.5rem 0; }
+        /* ================= BARRA DE CATEGORIAS CENTRALIZADA ================= */
+        .categories-nav {
+            background: rgba(255, 255, 255, 0.7);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0.5rem 1rem;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .categories-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2px;
+            align-items: center;
+        }
+        
+        .cat-btn { 
+            background: transparent; 
+            padding: 0.35rem 0.65rem; 
+            border-radius: 20px; 
+            cursor: pointer; 
+            font-family: 'Inter', sans-serif;
+            font-weight: 600; 
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: all 0.2s ease; 
+            border: 1px solid transparent;
+        }
+        
+        .cat-btn.green { color: var(--primary-green); }
+        .cat-btn.green:hover { background: rgba(45, 74, 45, 0.08); }
+        .cat-btn.green.active { background: #e5ede5; border-color: rgba(45, 74, 45, 0.3); box-shadow: 0 2px 5px rgba(45,74,45,0.1); }
+
+        .cat-btn.red { color: var(--primary-red); }
+        .cat-btn.red:hover { background: rgba(220, 38, 38, 0.08); }
+        .cat-btn.red.active { background: #fee2e2; border-color: rgba(220, 38, 38, 0.3); box-shadow: 0 2px 5px rgba(220,38,38,0.1); }
+
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+
+        .section-title { 
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem; 
+            color: var(--primary-green); 
+            border-bottom: 2px solid #e5e7eb; 
+            padding-bottom: 0.5rem; 
+            margin: 2.5rem 0 1.5rem 0; 
+            letter-spacing: 0.02em;
+        }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
         
-        .card { background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-orange); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        
-        .card h3 { color: var(--dark-bg); font-size: 1.3rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; }
-       
-		.card .badge { background: #e0f2fe; color: #0369a1; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; font-weight: bold; }
-
-        .summary { font-size: 0.95rem; color: #4b5563; margin-bottom: 1rem; }
-        
-        .lyrics-preview { 
-            background: var(--light-bg); 
-            border-left: 3px solid var(--primary-green); 
-            padding: 0.8rem; 
-            font-style: italic; 
-            font-size: 0.9rem; 
-            margin-bottom: 1rem; 
-            color: #1f2937; 
-            max-height: 9.5rem; 
-            overflow-y: auto; 
+        /* ================= CARDS ================= */
+        .card { 
+            position: relative;
+            background: rgba(255, 255, 255, 0.92); 
+            border-radius: 16px; 
+            padding: 1.5rem; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03); 
+            border: 1px solid rgba(229, 231, 235, 0.8); 
+            transition: all 0.3s ease; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            backdrop-filter: blur(5px);
+            overflow: hidden;
         }
         
-        /* Ajustes no Player de Áudio compacto */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-orange);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.08); 
+            border-color: rgba(217, 119, 6, 0.3); 
+        }
+        .card:hover::before { opacity: 1; }
+        
+        .card h3 { 
+            font-family: 'Cinzel', serif;
+            color: var(--dark-bg); 
+            font-size: 1.05rem; 
+            margin-bottom: 0.8rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .card .badge { 
+            font-family: 'Inter', sans-serif;
+            background: #e0f2fe;
+            color: #0284c7;
+            font-size: 0.7rem; 
+            padding: 0.2rem 0.6rem; 
+            border-radius: 20px; 
+            font-weight: 600; 
+            letter-spacing: 0.03em;
+            border: 1px solid rgba(2, 132, 199, 0.2);
+            text-transform: uppercase;
+        }
+
+        .lyrics-preview { 
+            background: #fafafa; 
+            border-left: 3px solid var(--primary-orange); 
+            padding: 0.9rem 1rem; 
+            font-family: 'Inter', sans-serif;
+            font-style: italic; 
+            font-size: 0.88rem; 
+            font-weight: 400;
+            margin-bottom: 1.2rem; 
+            color: #374151; 
+            max-height: 9.5rem; 
+            overflow-y: auto; 
+            border-radius: 0 8px 8px 0;
+            line-height: 1.6;
+        }
+        
         .audio-player { 
             margin-top: auto; 
             display: flex; 
             align-items: center; 
-            gap: 8px; 
-            background: #f1f3f5; 
-            padding: 0.5rem 0.75rem; 
-            border-radius: 8px; 
+            gap: 10px; 
+            background: #fdfbf7; 
+            padding: 0.45rem 0.75rem; 
+            border-radius: 12px; 
             width: 100%;
+            border: 1px solid rgba(217, 119, 6, 0.15);
         }
 
-        /* Botão apenas com ícone */
         .play-btn { 
             background: var(--primary-orange); 
             color: white; 
             border: none; 
-            width: 34px;
-            height: 34px;
-            border-radius: 6px; 
+            width: 32px;
+            height: 32px;
+            border-radius: 50%; 
             cursor: pointer; 
-            font-size: 0.85rem; 
+            font-size: 0.75rem; 
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s; 
+            transition: all 0.2s; 
             flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25);
         }
-        .play-btn:hover { background: #b45309; }
-        .play-btn.playing { background: var(--primary-green); }
+        .play-btn:hover { background: #b45309; transform: scale(1.06); }
+        .play-btn.playing { background: var(--primary-green); box-shadow: 0 2px 6px rgba(45, 74, 45, 0.25); }
 
         .player-controls {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             flex: 1;
-            min-width: 0; /* Garante que o slider encolhe adequadamente */
+            min-width: 0;
         }
 
         .seek-bar {
             flex: 1;
-            height: 4px;
+            height: 3px;
             accent-color: var(--primary-orange);
             cursor: pointer;
             min-width: 0;
         }
 
         .time-display {
-            font-size: 0.72rem;
-            color: #6b7280;
+            font-size: 0.7rem;
+            color: #9ca3af;
             white-space: nowrap;
             font-family: monospace;
             flex-shrink: 0;
@@ -179,98 +324,488 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            font-size: 0.85rem;
+            opacity: 0.6;
             flex-shrink: 0;
             padding: 0 2px;
+            transition: opacity 0.2s;
         }
         .mute-btn:hover { opacity: 1; }
 
-        footer {     
-            background: rgba(15, 41, 24, 0.85); 
-            color: orange; 
-            text-align: center; 
-            padding: 2rem 1rem; 
-            margin-top: 3rem; 
+        /* ================= RODAPÉ ================= */
+        footer { 
+            position: relative;
+            background: rgba(249, 250, 251, 0.95);
+            border-top: 1px solid #e5e7eb;
+            padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.02);
+            backdrop-filter: blur(8px);
+            margin-top: 2.5rem;
         }
-        footer p { 
-            opacity: 1.0; 
-            font-size: 0.9rem; 
-            color: orange; 
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            text-align: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .footer-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2d4a2d 0%, #1f2937 100%);
+            border: 2px solid var(--gold-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--primary-green);
+        }
+
+        .footer-divider {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+            margin: 0.1rem 0;
+        }
+
+        .footer-copy {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #6b7280;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-copy strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .back-to-top {
+            background: transparent;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .back-to-top:hover {
+            background: var(--light-green);
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        /* ================= PLAYER FIXO DE RODAPÉ ================= */
+        .bottom-player-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(249, 250, 251, 0.96);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+            z-index: 999;
+        }
+
+        .player-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 25%;
+            min-width: 180px;
+        }
+
+        .player-cover {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #2d4a2d 0%, #1f2937 100%);
+            border: 1.5px solid var(--gold-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .player-info {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .player-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary-green);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            letter-spacing: 0.02em;
+        }
+
+        .player-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: #6b7280;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .player-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            max-width: 480px;
+            gap: 3px;
+        }
+
+        .main-controls {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .ctrl-btn {
+            background: none;
+            border: none;
+            color: #4b5563;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .ctrl-btn:hover { color: var(--primary-green); }
+
+        .main-play-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-accent);
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 2px 6px rgba(45,74,45,0.2);
+        }
+        .main-play-btn:hover { transform: scale(1.08); background: #1f381f; }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .time-text {
+            font-size: 0.68rem;
+            color: #6b7280;
+            font-family: monospace;
+            width: 32px;
+            text-align: center;
+        }
+
+        .main-seek {
+            flex: 1;
+            height: 3px;
+            accent-color: var(--primary-orange);
+            cursor: pointer;
+        }
+
+        .player-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-end;
+            width: 25%;
+            min-width: 160px;
+        }
+
+        .vol-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vol-slider {
+            width: 70px;
+            height: 3px;
+            accent-color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        .list-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            color: var(--primary-green);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .list-btn:hover {
+            background: var(--light-green);
+            border-color: var(--primary-green);
+        }
+
+        /* ================= PAINEL DRAWER DE PLAYLIST ================= */
+        .playlist-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(3px);
+        }
+
+        .playlist-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: #fdfbf7;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .playlist-drawer.open {
+            right: 0;
+        }
+
+        .playlist-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+        }
+
+        .playlist-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .playlist-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-accent) #fdfbf7;
+        }
+
+        .playlist-content::-webkit-scrollbar { width: 6px; }
+        .playlist-content::-webkit-scrollbar-track { background: #fdfbf7; }
+        .playlist-content::-webkit-scrollbar-thumb { background-color: var(--gold-accent); border-radius: 10px; }
+
+        .playlist-item {
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 8px;
+            padding: 0.65rem 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .playlist-item:hover {
+            background: #f4f6f0;
+            border-color: var(--primary-green);
+        }
+
+        .playlist-item.active {
+            border-left: 3px solid var(--gold-accent);
+            background: #fefce8;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .item-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: #9ca3af;
+            font-weight: 600;
+            width: 18px;
+        }
+
+        .item-text h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            color: #1f2937;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .item-text p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            color: #6b7280;
+        }
+
+        .item-play {
+            color: #9ca3af;
+            font-size: 0.8rem;
+        }
+
+        .playlist-footer {
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+            background: #fff;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.03em;
         }
 
         @media (max-width: 768px) {
-            header { padding: 1.8rem 0.8rem 1.2rem 0.8rem; }
-            header h1 { font-size: 1.7rem; }
-            header p { font-size: 0.9rem; }
-
+            header { padding: 1rem; }
+            .header-container { flex-direction: column; align-items: stretch; gap: 1rem; }
+            .header-search-container { max-width: 100%; }
+            .categories-nav { padding: 0.5rem 1rem; }
             .container { margin: 1rem auto; padding: 0 0.8rem; }
-
-            .category-row { gap: 6px; }
-            .cat-btn { 
-                padding: 0.4rem 0.8rem; 
-                font-size: 0.82rem; 
-                border-width: 1.5px;
-            }
-
-            .search-input { 
-                padding: 0.7rem 1rem; 
-                font-size: 0.9rem; 
-            }
-
-            .section-title { 
-                font-size: 1.4rem; 
-                margin: 1.5rem 0 1rem 0; 
-            }
-
-            .grid { 
-                grid-template-columns: 1fr; 
-                gap: 1rem; 
-            }
-
+            .section-title { font-size: 1.4rem; margin: 1.5rem 0 1rem 0; }
+            .grid { grid-template-columns: 1fr; gap: 1rem; }
             .card { padding: 1rem; }
-            .card h3 { font-size: 1.15rem; }
+            .card h3 { font-size: 1.05rem; }
+
+            .player-left { width: auto; min-width: 0; }
+            .player-right .vol-container { display: none; }
+            .player-right { width: auto; min-width: 0; }
+            .player-subtitle { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Pontos de Curimba</h1>
-        <p>Pontos tocados em nossa Casa para nossos irmãos de Santo</p>
+        <div class="header-container">
+            <div class="header-brand">
+                <div class="header-logo-icon">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="32" cy="14" rx="15" ry="4" />
+                        <path d="M17 14 C18 28, 22 46, 26 52 H38 C42 46, 46 28, 47 14 Z" />
+                        <path d="M19 22 C26 25, 38 25, 45 22" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" fill="none" />
+                        <path d="M22 34 C27 37, 37 37, 42 34" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" fill="none" />
+                        <path d="M24 52 H40 V55 H24 Z" />
+                    </svg>
+                </div>
+                <div class="header-titles">
+                    <h1>PONTOS DE CURIMBA</h1>
+                    <p>Pontos tocados em nossa Casa para nossos irmãos de Santo</p>
+                </div>
+            </div>
+            <div class="header-search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar ponto, Orixá ou guia..." onkeyup="filterPoints()">
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar ponto, Orixá ou guia..." onkeyup="filterPoints()">
-        </div>
-
+    <div class="categories-nav">
         <div class="categories-container">
-            <div class="category-row">
-                <button class="cat-btn green active" onclick="filterCategory('direita')">Abertura da Direita</button>
-                <button class="cat-btn green" onclick="filterCategory('caboclo')">Caboclo</button>
-                <button class="cat-btn green" onclick="filterCategory('preto-velho')">Preto Velho</button>
-                <button class="cat-btn green" onclick="filterCategory('eres')">Erês</button>
-                <button class="cat-btn green" onclick="filterCategory('baiano')">Baianos</button>
-                <button class="cat-btn green" onclick="filterCategory('boiadeiro')">Boiadeiros</button>
-                <button class="cat-btn green" onclick="filterCategory('marinheiro')">Marinheiros</button>
-            </div>
-            <div class="category-row">
-                <button class="cat-btn red" onclick="filterCategory('esquerda')">Abertura da Esquerda</button>
-                <button class="cat-btn red" onclick="filterCategory('exu')">Exú</button>
-                <button class="cat-btn red" onclick="filterCategory('pombogira')">Pombogira</button>
-                <button class="cat-btn red" onclick="filterCategory('exumirim')">Exú-Mirim</button>
-                <button class="cat-btn red" onclick="filterCategory('malandro')">Malandros</button>
-            </div>
+            <button class="cat-btn green" onclick="filterCategory('direita', event)">Abertura da Direita</button>
+            <button class="cat-btn green" onclick="filterCategory('caboclo', event)">Caboclo</button>
+            <button class="cat-btn green" onclick="filterCategory('preto-velho', event)">Preto Velho</button>
+            <button class="cat-btn green" onclick="filterCategory('eres', event)">Erês</button>
+            <button class="cat-btn green" onclick="filterCategory('baiano', event)">Baianos</button>
+            <button class="cat-btn green" onclick="filterCategory('boiadeiro', event)">Boiadeiros</button>
+            <button class="cat-btn green" onclick="filterCategory('marinheiro', event)">Marinheiros</button>
+            <button class="cat-btn red" onclick="filterCategory('esquerda', event)">Abertura da Esquerda</button>
+            <button class="cat-btn red" onclick="filterCategory('exu', event)">Exú</button>
+            <button class="cat-btn red" onclick="filterCategory('pombogira', event)">Pombogira</button>
+            <button class="cat-btn red" onclick="filterCategory('exumirim', event)">Exú-Mirim</button>
+            <button class="cat-btn red" onclick="filterCategory('malandro', event)">Malandros</button>
         </div>
+    </div>
 
+    <div class="container">
         <div id="content-area">
             <h2 class="section-title">Pontos de Abertura | Linha da Direita</h2>
             <div class="grid" id="grid-direita">
                 
                 <!-- 1. Bate Cabeça -->
-                <div class="card">
+                <div class="card" data-id="1" data-category="direita" data-title="PONTO 1: BATE CABEÇA" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>1. Bate Cabeça <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
@@ -291,7 +826,7 @@
                 </div>
 
                 <!-- 2. Defumação -->
-                <div class="card">
+                <div class="card" data-id="2" data-category="direita" data-title="PONTO 2: DEFUMAÇÃO DAS ERVAS" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>2. Defumação <span class="badge">Samba</span></h3>
                         <div class="lyrics-preview">
@@ -313,7 +848,7 @@
                 </div>
 
                 <!-- 3. Hino da Umbanda -->
-                <div class="card">
+                <div class="card" data-id="3" data-category="direita" data-title="PONTO 3: HINO DA UMBANDA" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>3. Hino da Umbanda <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
@@ -341,7 +876,7 @@
                 </div>
 
                 <!-- 4. Ponto das 7 Linhas -->
-                <div class="card">
+                <div class="card" data-id="4" data-category="direita" data-title="PONTO 4: AS 7 LINHAS DOS ORIXÁS" data-src="7_audio.mp3">
                     <div>
                         <h3>4. Ponto das 7 Linhas <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
@@ -388,7 +923,7 @@
                 </div>
 
                 <!-- 5. Hino dos Orixás -->
-                <div class="card">
+                <div class="card" data-id="5" data-category="direita" data-title="PONTO 5: HINO DOS ORIXÁS" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>5. Hino dos Orixás <span class="badge">Congo</span></h3>
                         <div class="lyrics-preview">
@@ -434,7 +969,7 @@
                 </div>
 
                 <!-- 6. Oxalá -->
-                <div class="card">
+                <div class="card" data-id="6" data-category="direita" data-title="PONTO 6: PAI OXALÁ" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>6. Oxalá <span class="badge">Congo</span></h3>
                         <div class="lyrics-preview">
@@ -464,7 +999,7 @@
                 </div>
 
                 <!-- 7. Xangô -->
-                <div class="card">
+                <div class="card" data-id="7" data-category="direita" data-title="PONTO 7: REI XANGÔ" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>7. Xangô <span class="badge">Barravento</span></h3>
                         <div class="lyrics-preview">
@@ -488,7 +1023,7 @@
                 </div>
 
                 <!-- 8. Iansã -->
-                <div class="card">
+                <div class="card" data-id="8" data-category="direita" data-title="PONTO 8: MÃE IANSÃ" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>8. Iansã <span class="badge">Barravento</span></h3>
                         <div class="lyrics-preview">
@@ -523,7 +1058,7 @@
                 </div>
 
                 <!-- 9. Oxum -->
-                <div class="card">
+                <div class="card" data-id="9" data-category="direita" data-title="PONTO 9: MAMÃE OXUM" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>9. Oxum <span class="badge">Ijexá</span></h3>
                         <div class="lyrics-preview">
@@ -550,7 +1085,7 @@
                 </div>
 
                 <!-- 10. Ogum -->
-                <div class="card">
+                <div class="card" data-id="10" data-category="direita" data-title="PONTO 10: SENHOR OGUM" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>10. Ogum <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
@@ -573,7 +1108,7 @@
                 </div>
 
                 <!-- 11. Iemanjá -->
-                <div class="card">
+                <div class="card" data-id="11" data-category="direita" data-title="PONTO 11: MAMÃE IEMANJÁ" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>11. Iemanjá <span class="badge">Ijexá</span></h3>
                         <div class="lyrics-preview">
@@ -601,7 +1136,7 @@
                 </div>
 
                 <!-- 12. Oxossi -->
-                <div class="card">
+                <div class="card" data-id="12" data-category="caboclo" data-title="PONTO 12: PAI OXÓSSI" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>12. Oxossi <span class="badge">Congo</span></h3>
                         <div class="lyrics-preview">
@@ -631,7 +1166,7 @@
                 </div>
 
                 <!-- 13. Ibejis -->
-                <div class="card">
+                <div class="card" data-id="13" data-category="eres" data-title="PONTO 13: IBEJIS & ERÊS" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>13. Ibejis <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
@@ -655,7 +1190,7 @@
                 </div>
 
                 <!-- 14. Nanã -->
-                <div class="card">
+                <div class="card" data-id="14" data-category="direita" data-title="PONTO 14: NANÃ BURUQUÊ" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>14. Nanã <span class="badge">Ijexá</span></h3>
                         <div class="lyrics-preview">
@@ -680,7 +1215,7 @@
                 </div>
 
                 <!-- 15. Obaluaê -->
-                <div class="card">
+                <div class="card" data-id="15" data-category="direita" data-title="PONTO 15: OBALUAÊ" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>15. Obaluaê <span class="badge">Ijexá</span></h3>
                         <div class="lyrics-preview">
@@ -709,7 +1244,7 @@
                 </div>
 
                 <!-- 16. Guardiões -->
-                <div class="card">
+                <div class="card" data-id="16" data-category="esquerda" data-title="PONTO 16: GUARDIÕES DA NOITE" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>16. Guardiões <span class="badge">Congo</span></h3>
                         <div class="lyrics-preview">
@@ -760,7 +1295,7 @@
                 </div>
 
                 <!-- 17. Anjo de Guarda -->
-                <div class="card">
+                <div class="card" data-id="17" data-category="direita" data-title="PONTO 17: ANJO DA GUARDA" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>17. Anjo da Guarda <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
@@ -784,7 +1319,7 @@
                 </div>
 
                 <!-- 18. Proteção e Toalha -->
-                <div class="card">
+                <div class="card" data-id="18" data-category="direita" data-title="PONTO 18: PROTEÇÃO E TOALHA" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>18. Proteção e Toalha <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
@@ -804,7 +1339,7 @@
                 </div>
 
                 <!-- 19. Abrir a Gira -->
-                <div class="card">
+                <div class="card" data-id="19" data-category="direita" data-title="PONTO 19: ABRIR A GIRA" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
                     <div>
                         <h3>19. Abrir a Gira <span class="badge">Nagô</span></h3>
                         <div class="lyrics-preview">
@@ -825,30 +1360,132 @@
 
             </div>
         </div>
-
     </div>
 
+    <!-- ================= RODAPÉ ================= -->
     <footer>
-	        <p>&copy; 2026 | Pontos de Curimba | Pontos de Umbanda | Todos os direitos reservados.</p>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo-icon">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="32" cy="14" rx="15" ry="4" />
+                        <path d="M17 14 C18 28, 22 46, 26 52 H38 C42 46, 46 28, 47 14 Z" />
+                        <path d="M19 22 C26 25, 38 25, 45 22" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" fill="none" />
+                        <path d="M22 34 C27 37, 37 37, 42 34" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" fill="none" />
+                        <path d="M24 52 H40 V55 H24 Z" />
+                    </svg>
+                </div>
+                <span class="footer-title">PONTOS DE CURIMBA</span>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                ▲ Voltar ao topo
+            </button>
+
+            <p class="footer-copy">
+                &copy; 2026 <strong>Pontos de Curimba</strong> • Pontos de Umbanda. Todos os direitos reservados.
+            </p>
+        </div>
     </footer>
+
+    <!-- ================= BARRA DO PLAYER FIXO ================= -->
+    <div class="bottom-player-bar">
+        <div class="player-left">
+            <div class="player-cover">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="32" cy="14" rx="15" ry="4" />
+                    <path d="M17 14 C18 28, 22 46, 26 52 H38 C42 46, 46 28, 47 14 Z" />
+                    <path d="M19 22 C26 25, 38 25, 45 22" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" fill="none" />
+                    <path d="M22 34 C27 37, 37 37, 42 34" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" fill="none" />
+                    <path d="M24 52 H40 V55 H24 Z" />
+                </svg>
+            </div>
+            <div class="player-info">
+                <div class="player-title" id="bottomTitle">Selecione um Ponto</div>
+                <div class="player-subtitle" id="bottomSubtitle">Pontos de Curimba</div>
+            </div>
+        </div>
+
+        <div class="player-center">
+            <div class="main-controls">
+                <button class="ctrl-btn" onclick="playPrevious()" title="Anterior">⏮</button>
+                <button class="main-play-btn" id="mainPlayBtn" onclick="toggleMainPlay()" title="Tocar / Pausar">▶</button>
+                <button class="ctrl-btn" onclick="playNext()" title="Próximo">⏭</button>
+            </div>
+            <div class="progress-container">
+                <span class="time-text" id="currentTimeText">0:00</span>
+                <input type="range" class="main-seek" id="mainSeekBar" value="0" max="100" step="0.1" oninput="seekMainAudio(this)">
+                <span class="time-text" id="totalTimeText">0:00</span>
+            </div>
+        </div>
+
+        <div class="player-right">
+            <div class="vol-container">
+                <span style="font-size: 0.8rem; opacity: 0.7;">🔊</span>
+                <input type="range" class="vol-slider" id="volSlider" value="100" max="100" oninput="adjustVolume(this.value)">
+            </div>
+            <button class="list-btn" onclick="openPlaylistDrawer()">
+                <span>☰</span> Lista
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= DRAWER / MODAL DE PLAYLIST ================= -->
+    <div class="playlist-overlay" id="playlistOverlay" onclick="closePlaylistDrawer()"></div>
+    <div class="playlist-drawer" id="playlistDrawer">
+        <div class="playlist-header">
+            <div class="playlist-title">
+                <span>🎵</span> PLAYLIST DE PONTOS
+            </div>
+            <button class="close-btn" onclick="closePlaylistDrawer()">&times;</button>
+        </div>
+        <div class="playlist-content" id="playlistItems">
+            <!-- Gerado dinamicamente via JavaScript -->
+        </div>
+        <div class="playlist-footer">
+            Pontos de Curimba
+        </div>
+    </div>
 
     <script>
         let currentAudio = null;
+        let currentCardIndex = -1;
+        let visibleCards = [];
         let updateInterval = null;
 
         function formatTime(seconds) {
-            if (isNaN(seconds)) return "0:00";
+            if (isNaN(seconds) || seconds === Infinity) return "0:00";
             const minutes = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
         }
 
-        function filterCategory(category) {
+        function updateVisibleCards() {
+            const allCards = Array.from(document.querySelectorAll('.card'));
+            visibleCards = allCards.filter(card => card.style.display !== "none");
+            renderPlaylistDrawer();
+        }
+
+        function filterCategory(category, event) {
             const buttons = document.querySelectorAll('.cat-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            if(event && event.target) {
-                event.target.classList.add('active');
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
             }
+
+            let cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                let cardCategory = card.getAttribute('data-category');
+                if (category === 'todos' || !cardCategory || cardCategory === category) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            updateVisibleCards();
         }
 
         function filterPoints() {
@@ -863,73 +1500,156 @@
                     card.style.display = "none";
                 }
             });
+
+            updateVisibleCards();
+        }
+
+        function syncPlayerUI(playing) {
+            const mainPlayBtn = document.getElementById('mainPlayBtn');
+            if (mainPlayBtn) {
+                mainPlayBtn.innerHTML = playing ? '⏸' : '▶';
+            }
+
+            document.querySelectorAll('.play-btn').forEach(btn => {
+                btn.innerHTML = '▶';
+                btn.classList.remove('playing');
+            });
+
+            if (currentCardIndex !== -1 && visibleCards[currentCardIndex]) {
+                const card = visibleCards[currentCardIndex];
+                const cardPlayBtn = card.querySelector('.play-btn');
+                if (cardPlayBtn && playing) {
+                    cardPlayBtn.innerHTML = '⏸';
+                    cardPlayBtn.classList.add('playing');
+                }
+            }
+
+            renderPlaylistDrawer();
+        }
+
+        function playCardAtIndex(index) {
+            if (index < 0 || index >= visibleCards.length) return;
+
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            currentCardIndex = index;
+            const card = visibleCards[index];
+            const audioId = card.getAttribute('data-id');
+            const audio = document.getElementById('audio-' + audioId);
+            const title = card.getAttribute('data-title') || card.querySelector('h3').innerText;
+            const subtitle = card.getAttribute('data-subtitle') || "Pontos de Curimba";
+
+            document.getElementById('bottomTitle').textContent = title;
+            document.getElementById('bottomSubtitle').textContent = subtitle;
+
+            currentAudio = audio;
+
+            audio.play().then(() => {
+                syncPlayerUI(true);
+                startProgressLoop();
+            }).catch(err => {
+                console.error("Erro ao reproduzir o áudio:", err);
+            });
+
+            audio.onended = function() {
+                playNext();
+            };
         }
 
         function toggleAudio(audioId, buttonElement) {
-            const audio = document.getElementById('audio-' + audioId);
-            const seekBar = buttonElement.parentElement.querySelector('.seek-bar');
-            const timeDisplay = document.getElementById('time-' + audioId);
-            
-            if (currentAudio && currentAudio !== audio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-                if (updateInterval) clearInterval(updateInterval);
-                const prevBtn = document.querySelector('.play-btn.playing');
-                if (prevBtn) {
-                    prevBtn.innerHTML = '▶';
-                    prevBtn.classList.remove('playing');
-                }
-            }
+            updateVisibleCards();
+            const card = buttonElement.closest('.card');
+            const index = visibleCards.indexOf(card);
 
-            if (audio.paused) {
-                audio.play().then(() => {
-                    buttonElement.innerHTML = '⏸';
-                    buttonElement.classList.add('playing');
-                    currentAudio = audio;
-                    
+            if (currentCardIndex === index && currentAudio) {
+                if (currentAudio.paused) {
+                    currentAudio.play();
+                    syncPlayerUI(true);
+                    startProgressLoop();
+                } else {
+                    currentAudio.pause();
+                    syncPlayerUI(false);
                     if (updateInterval) clearInterval(updateInterval);
-                    updateInterval = setInterval(() => {
-                        if (!audio.paused) {
-                            const progress = (audio.currentTime / audio.duration) * 100;
-                            if (seekBar) seekBar.value = isNaN(progress) ? 0 : progress;
-                            if (timeDisplay) {
-                                timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
-                            }
-                        }
-                    }, 250);
-                }).catch(err => {
-                    alert('Erro ao reproduzir o áudio. Verifique o link do ficheiro .mp3.');
-                    console.error(err);
-                });
+                }
             } else {
-                audio.pause();
-                buttonElement.innerHTML = '▶';
-                buttonElement.classList.remove('playing');
-                if (updateInterval) clearInterval(updateInterval);
-                currentAudio = null;
+                playCardAtIndex(index);
+            }
+        }
+
+        function toggleMainPlay() {
+            if (!currentAudio) {
+                updateVisibleCards();
+                if (visibleCards.length > 0) playCardAtIndex(0);
+                return;
             }
 
-            audio.onloadedmetadata = function() {
-                if (timeDisplay) {
-                    timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
-                }
-            };
-
-            audio.onended = function() {
-                buttonElement.innerHTML = '▶';
-                buttonElement.classList.remove('playing');
+            if (currentAudio.paused) {
+                currentAudio.play();
+                syncPlayerUI(true);
+                startProgressLoop();
+            } else {
+                currentAudio.pause();
+                syncPlayerUI(false);
                 if (updateInterval) clearInterval(updateInterval);
-                if (seekBar) seekBar.value = 0;
-                if (timeDisplay) timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
-                currentAudio = null;
-            };
+            }
+        }
+
+        function playNext() {
+            updateVisibleCards();
+            if (visibleCards.length === 0) return;
+            let nextIndex = currentCardIndex + 1;
+            if (nextIndex >= visibleCards.length) nextIndex = 0;
+            playCardAtIndex(nextIndex);
+        }
+
+        function playPrevious() {
+            updateVisibleCards();
+            if (visibleCards.length === 0) return;
+            let prevIndex = currentCardIndex - 1;
+            if (prevIndex < 0) prevIndex = visibleCards.length - 1;
+            playCardAtIndex(prevIndex);
+        }
+
+        function startProgressLoop() {
+            if (updateInterval) clearInterval(updateInterval);
+            updateInterval = setInterval(() => {
+                if (currentAudio && !currentAudio.paused) {
+                    const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+                    
+                    document.getElementById('mainSeekBar').value = isNaN(progress) ? 0 : progress;
+                    document.getElementById('currentTimeText').textContent = formatTime(currentAudio.currentTime);
+                    document.getElementById('totalTimeText').textContent = formatTime(currentAudio.duration);
+
+                    if (currentCardIndex !== -1 && visibleCards[currentCardIndex]) {
+                        const card = visibleCards[currentCardIndex];
+                        const seekBar = card.querySelector('.seek-bar');
+                        const timeDisplay = card.querySelector('.time-display');
+                        if (seekBar) seekBar.value = isNaN(progress) ? 0 : progress;
+                        if (timeDisplay) timeDisplay.textContent = `${formatTime(currentAudio.currentTime)} / ${formatTime(currentAudio.duration)}`;
+                    }
+                }
+            }, 250);
         }
 
         function seekAudio(audioId, seekBar) {
             const audio = document.getElementById('audio-' + audioId);
-            if (audio.duration) {
-                const seekTime = (seekBar.value / 100) * audio.duration;
-                audio.currentTime = seekTime;
+            if (audio && audio.duration) {
+                audio.currentTime = (seekBar.value / 100) * audio.duration;
+            }
+        }
+
+        function seekMainAudio(seekBar) {
+            if (currentAudio && currentAudio.duration) {
+                currentAudio.currentTime = (seekBar.value / 100) * currentAudio.duration;
+            }
+        }
+
+        function adjustVolume(val) {
+            if (currentAudio) {
+                currentAudio.volume = val / 100;
             }
         }
 
@@ -938,6 +1658,52 @@
             audio.muted = !audio.muted;
             muteBtn.textContent = audio.muted ? '🔇' : '🔊';
         }
+
+        function openPlaylistDrawer() {
+            updateVisibleCards();
+            document.getElementById('playlistOverlay').style.display = 'block';
+            document.getElementById('playlistDrawer').classList.add('open');
+        }
+
+        function closePlaylistDrawer() {
+            document.getElementById('playlistOverlay').style.display = 'none';
+            document.getElementById('playlistDrawer').classList.remove('open');
+        }
+
+        function renderPlaylistDrawer() {
+            const container = document.getElementById('playlistItems');
+            container.innerHTML = '';
+
+            visibleCards.forEach((card, idx) => {
+                const title = card.getAttribute('data-title') || card.querySelector('h3').innerText;
+                const subtitle = card.getAttribute('data-subtitle') || "Pontos de Curimba";
+                const isActive = idx === currentCardIndex;
+                const isPlaying = isActive && currentAudio && !currentAudio.paused;
+
+                const item = document.createElement('div');
+                item.className = `playlist-item ${isActive ? 'active' : ''}`;
+                item.onclick = () => {
+                    playCardAtIndex(idx);
+                };
+
+                item.innerHTML = `
+                    <div class="item-info">
+                        <span class="item-num">${idx + 1}</span>
+                        <div class="item-text">
+                            <h4>${title}</h4>
+                            <p>${subtitle}</p>
+                        </div>
+                    </div>
+                    <span class="item-play">${isPlaying ? '⏸' : '▶'}</span>
+                `;
+
+                container.appendChild(item);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateVisibleCards();
+        });
     </script>
 </body>
 </html>
